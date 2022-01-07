@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dechex.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 18:40:15 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/07 18:48:43 by leolivei         ###   ########.fr       */
+/*   Created: 2022/01/07 20:18:02 by leolivei          #+#    #+#             */
+/*   Updated: 2022/01/07 20:19:22 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "../includes/ft_printf.h"
 
-int	ft_dechex(int dec, char d)
+int	ft_putstr(char *s, int fd)
 {
-	int	rest;
-	int	quoc;
-	char	imp;
+	int	i;
 
-	rest = dec % 16;
-	quoc = dec / 16;
-	if(rest != 0 || (rest == 0 && dec > 15))
-		ft_dechex(quoc, d);
-	else
-		return(0);
-	if(rest > 9)
+	i = 0;
+	if (!s || fd < 0)
+		return ;
+	while (s[i] != '\0')
 	{
-		if (d == 'X')
-			imp = 'A' + rest - 10;
-		else
-			imp = 'a' + rest - 10;
-		write(1, &imp, 1);
+		ft_putchar_fd(s[i], fd);
+		i++;
 	}
-	else
-	{
-		imp = '0' + rest;
-		write(1, &imp, 1);
-	}
-}
-
-int	main()
-{
-	ft_dechex(16, 'X');
+	return (i);
 }
