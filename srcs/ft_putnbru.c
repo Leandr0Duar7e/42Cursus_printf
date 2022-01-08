@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dechex.c                                        :+:      :+:    :+:   */
+/*   ft_putnbru.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 18:40:15 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/08 21:59:48 by leolivei         ###   ########.fr       */
+/*   Created: 2022/01/08 20:52:06 by leolivei          #+#    #+#             */
+/*   Updated: 2022/01/08 20:52:58 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "../includes/ft_printf.h"
 
-void	ft_dechex(unsigned long long dec, char d)
+void	ft_putnbru(unsigned int nbr)
 {
-	char			imp;
-	unsigned long	rest;
-	unsigned long	quoc;
+	char	nr;
 
-	rest = dec % 16;
-	quoc = dec / 16;
-	if(rest != 0 || (rest == 0 && dec > 15))
-		ft_dechex(quoc, d);
-	else
-		return ;
-	if(rest > 9)
+	if (nbr > 9)
 	{
-		if (d == 'X')
-			imp = 'A' + rest - 10;
-		else
-			imp = 'a' + rest - 10;
-		write(1, &imp, 1);
+		ft_putnbru(nbr / 10);
+		nr = '0' + nbr % 10;
+		write(1, &nr, 1);
 	}
 	else
 	{
-		imp = '0' + rest;
-		write(1, &imp, 1);
+		nr = '0' + nbr;
+		write(1, &nr, 1);
 	}
 }

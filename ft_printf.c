@@ -6,7 +6,7 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:44:31 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/08 18:26:37 by leolivei         ###   ########.fr       */
+/*   Updated: 2022/01/08 22:01:03 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,26 @@ static int	ft_eval_format(t_printf *tab, const char *format, int i)
 	else if (format[i] == 'd' || format[i] == 'i')
 	{
 		var = va_arg(tab->args, int);
-		tab->tl += 
+		tab->tl += ft_countnbr(var);
 		ft_putnbr_fd(var, 1);
 	}
 	else if (format[i] == 'p')
 	{
-		var3 = va_arg(tab->args, unsigned long); 
+		var3 = va_arg(tab->args, unsigned long);
+		tab->tl += ft_countnbrh(var3);
+		ft_dechex(var3, 'x');
+	}
+	else if (format[i] == 'u')
+	{
+		var2 = va_arg(tab->args, unsigned int);
+		tab->tl += ft_countnbru(var2);
+		ft_putnbru(var2);
+	}
+	else if (format[i] == 'x' || format[i] == 'X')
+	{
+		var2 = va_arg(tab->args, unsigned int);
+		tab->tl += ft_countnbrh(var2);
+		ft_dechex(var2, format[i]);
 	}
 	return (i);
 }
@@ -74,8 +88,7 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 			i = ft_eval_format(tab, format, i + 1);
 		else
-			ret += write(1, &format[i], 1);
-		//printf("%d\n", ret);//debuggg
+			ret += write(1, &format[i], 1);	
 		i++;
 	}
 	va_end(tab->args);
@@ -91,5 +104,4 @@ int	main()
 	res = ft_printf("Ora boas!%d", -845);
 	printf("\n%d", res);
 }
-
 
