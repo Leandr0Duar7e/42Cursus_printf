@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 20:18:02 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/08 17:42:18 by leolivei         ###   ########.fr       */
+/*   Created: 2022/01/08 18:16:43 by leolivei          #+#    #+#             */
+/*   Updated: 2022/01/08 18:26:32 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "../includes/ft_printf.h"
 
-int	ft_putstr(char *s, int fd)
+int	ft_nbrlen(int n)
 {
-	int	i;
-
-	i = 0;
-	if (!s || fd < 0)
-		return (0);
-	while (s[i] != '\0')
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
-	return (i);
 }
