@@ -6,7 +6,7 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:44:31 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/09 13:56:27 by leolivei         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:44:16 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int	ft_eval_format2(t_printf *tab, const char *format, int i)
 	if (format[i] == 'p')
 	{
 		var3 = va_arg(tab->args, unsigned long);
+		tab->tl += write(1, "0x", 2);
 		tab->tl += ft_countnbrh(var3);
 		ft_dechex(var3, 'x');
 	}
@@ -47,6 +48,8 @@ static int	ft_eval_format2(t_printf *tab, const char *format, int i)
 		tab->tl += ft_countnbrh(var2);
 		ft_dechex(var2, format[i]);
 	}
+	else if (format[i] == '%')
+		tab->tl += write(1, "%", 1);
 	return (i);
 }
 
@@ -65,13 +68,14 @@ static int	ft_eval_format(t_printf *tab, const char *format, int i)
 	else if (format[i] == 's')
 	{
 		var1 = va_arg(tab->args, char *);
+		if (!var1)
+			tab->tl += write(1, "(null)", 6);
 		tab->tl += ft_putstr(var1, 1);
 	}
 	else if (format[i] == 'd' || format[i] == 'i')
 	{
 		var = va_arg(tab->args, int);
 		tab->tl += ft_countnbr(var);
-		ft_putnbr_fd(var, 1);
 	}
 	else
 		return (ft_eval_format2(tab, format, i));
@@ -109,7 +113,7 @@ int	main()
 {
 	int res;
 
-	res = ft_printf("Ora boas!%x", 845345245);
+	res = ft_printf(" NULL %u NULL ", -9223372036854775808);
 	printf("\n%d", res);
 }
 */

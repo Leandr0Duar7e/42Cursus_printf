@@ -6,10 +6,11 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 20:18:02 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/08 17:42:18 by leolivei         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:05:19 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "../includes/ft_printf.h"
 
 int	ft_putstr(char *s, int fd)
