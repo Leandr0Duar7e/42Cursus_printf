@@ -6,7 +6,7 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:40:15 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/08 21:59:48 by leolivei         ###   ########.fr       */
+/*   Updated: 2022/01/09 13:47:37 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	ft_dechex(unsigned long long dec, char d)
 
 	rest = dec % 16;
 	quoc = dec / 16;
-	if(rest != 0 || (rest == 0 && dec > 15))
+	if (rest != 0 || (rest == 0 && dec > 15))
 		ft_dechex(quoc, d);
 	else
 		return ;
-	if(rest > 9)
+	if (rest > 9)
 	{
 		if (d == 'X')
 			imp = 'A' + rest - 10;

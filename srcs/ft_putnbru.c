@@ -6,10 +6,11 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:52:06 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/08 20:52:58 by leolivei         ###   ########.fr       */
+/*   Updated: 2022/01/09 13:41:25 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "../includes/ft_printf.h"
 
 void	ft_putnbru(unsigned int nbr)

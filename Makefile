@@ -6,7 +6,7 @@
 #    By: jbuny-fe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/24 19:59:53 by jbuny-fe          #+#    #+#              #
-#    Updated: 2022/01/07 17:59:13 by leolivei         ###   ########.fr        #
+#    Updated: 2022/01/09 13:56:39 by leolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 LIBFT       = ./libft/libft.a
@@ -17,7 +17,9 @@ FLAGS      	= -Wall -Wextra -Werror -g
 RM          = rm -f
 
 SRCS        = ft_printf.c\
-			  srcs/ft_dechex.c
+			  srcs/ft_dechex.c srcs/ft_countnbru.c srcs/ft_putchar.c\
+			  srcs/ft_putstr.c srcs/ft_countnbr.c\
+			  srcs/ft_countnbrh.c srcs/ft_putnbru.c
 
 		
 OBJS        = $(SRCS:.c=.o)

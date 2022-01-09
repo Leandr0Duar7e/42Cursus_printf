@@ -6,7 +6,7 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:41:41 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/08 20:39:37 by leolivei         ###   ########.fr       */
+/*   Updated: 2022/01/09 13:46:47 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_countnbr(int nbr)
 	if (nbr < 0)
 	{
 		ret++;
-		nbr = - nbr;
+		nbr = -nbr;
 	}
 	while (nbr > 0)
 	{

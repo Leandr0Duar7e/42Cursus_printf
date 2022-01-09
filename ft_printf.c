@@ -6,7 +6,7 @@
 /*   By: leolivei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:44:31 by leolivei          #+#    #+#             */
-/*   Updated: 2022/01/08 22:01:03 by leolivei         ###   ########.fr       */
+/*   Updated: 2022/01/09 13:56:27 by leolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include "includes/ft_printf.h"
 
-t_printf	*ft_initialize_tab(t_printf *tab)
+static t_printf	*ft_initialize_tab(t_printf *tab)
 {
 	tab->tl = 0;
 	tab->is_zero = 0;
@@ -24,11 +24,35 @@ t_printf	*ft_initialize_tab(t_printf *tab)
 	return (tab);
 }
 
+static int	ft_eval_format2(t_printf *tab, const char *format, int i)
+{
+	unsigned int	var2;
+	unsigned long	var3;
+
+	if (format[i] == 'p')
+	{
+		var3 = va_arg(tab->args, unsigned long);
+		tab->tl += ft_countnbrh(var3);
+		ft_dechex(var3, 'x');
+	}
+	else if (format[i] == 'u')
+	{
+		var2 = va_arg(tab->args, unsigned int);
+		tab->tl += ft_countnbru(var2);
+		ft_putnbru(var2);
+	}
+	else if (format[i] == 'x' || format[i] == 'X')
+	{
+		var2 = va_arg(tab->args, unsigned int);
+		tab->tl += ft_countnbrh(var2);
+		ft_dechex(var2, format[i]);
+	}
+	return (i);
+}
+
 static int	ft_eval_format(t_printf *tab, const char *format, int i)
 {
 	char			*var1;
-	unsigned int	var2;
-	unsigned long	var3;
 	int				var;
 
 	while (!(ft_strchr("csdiupxX%", format[i])))
@@ -49,24 +73,8 @@ static int	ft_eval_format(t_printf *tab, const char *format, int i)
 		tab->tl += ft_countnbr(var);
 		ft_putnbr_fd(var, 1);
 	}
-	else if (format[i] == 'p')
-	{
-		var3 = va_arg(tab->args, unsigned long);
-		tab->tl += ft_countnbrh(var3);
-		ft_dechex(var3, 'x');
-	}
-	else if (format[i] == 'u')
-	{
-		var2 = va_arg(tab->args, unsigned int);
-		tab->tl += ft_countnbru(var2);
-		ft_putnbru(var2);
-	}
-	else if (format[i] == 'x' || format[i] == 'X')
-	{
-		var2 = va_arg(tab->args, unsigned int);
-		tab->tl += ft_countnbrh(var2);
-		ft_dechex(var2, format[i]);
-	}
+	else
+		return (ft_eval_format2(tab, format, i));
 	return (i);
 }
 
@@ -88,7 +96,7 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 			i = ft_eval_format(tab, format, i + 1);
 		else
-			ret += write(1, &format[i], 1);	
+			ret += write(1, &format[i], 1);
 		i++;
 	}
 	va_end(tab->args);
@@ -96,12 +104,12 @@ int	ft_printf(const char *format, ...)
 	free (tab);
 	return (ret);
 }
-
+/*
 int	main()
 {
 	int res;
 
-	res = ft_printf("Ora boas!%d", -845);
+	res = ft_printf("Ora boas!%x", 845345245);
 	printf("\n%d", res);
 }
-
+*/
